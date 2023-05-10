@@ -1,25 +1,20 @@
 var isValid = function (s) {
-	let stack = []
-    let isValid = true
-    const bracketMap = new Map([[")", "("],["}", "{"],["]", "["]]);
-    for(let i = 0; i < s.length; i++){
-        if(bracketMap.has(s.charAt(i))){ 
-            if(stack.length != 0 && stack[stack.length - 1] == bracketMap.get(s.charAt(i))){
-                stack.pop()
-            } else {
-                isValid = false 
-            }
-        } else {
-            stack.push(s.charAt(i))
-        }
-    }
-    console.log('Testing', stack)
-    if(stack.length == 0){
-        isValid = true
-    } else {
-        isValid = false
-    }
-    return isValid
+	if (s.length % 2 !== 0) return false;
+  
+  const stack = [];
+  const map = new Map([
+    ['(', ')'],
+    ['[', ']'],
+    ['{', '}']
+  ]);
+    
+  for (let i = 0 ; i < s.length ; i += 1) {
+    if (map.has(s[i])) {
+      stack.push(map.get(s[i]));
+    } else if (s[i] !== stack.pop()) {
+      return false;
+    } 
+  }
+  return stack.length === 0;
 };
-
 console.log(isValid("()"))
