@@ -13,7 +13,7 @@ var evalRPN = function (tokens) {
         } else if (tokens[i] === "/") {
             let a = stack.pop();
             let b = stack.pop();
-            stack.push(parseInt(b / a)); // Use parseInt for truncating division
+            stack.push(parseInt(b / a));
         } else {
             stack.push(parseInt(tokens[i]));
         }
