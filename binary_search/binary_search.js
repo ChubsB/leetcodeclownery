@@ -1,10 +1,10 @@
 var search = function(nums, target) {
     let index = -1;
     let start = 0;
-    let stop = nums.length - 1; // Subtract 1 to get the correct index of the last element
+    let stop = nums.length - 1; 
     let mid = Math.floor((start + stop) / 2);
 
-    while (start <= stop) { // Change condition from start < stop to start <= stop
+    while (start <= stop) {
         mid = Math.floor((start + stop) / 2);
 
         if (nums[mid] === target) {
@@ -13,9 +13,9 @@ var search = function(nums, target) {
         }
 
         if (nums[mid] > target) {
-            stop = mid - 1; // Adjust stop index to search in the left half
+            stop = mid - 1; 
         } else {
-            start = mid + 1; // Adjust start index to search in the right half
+            start = mid + 1; 
         }
     }
 
