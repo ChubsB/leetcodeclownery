@@ -8,10 +8,14 @@ const bubble_sort = (array) => {
 			array[j+1] = array[j]
 			array[j] = temp
 		}
-		console.log("Pass ", i, array)
 	}
   }
   return array
 };
 
 console.log(bubble_sort(array))
+
+/*
+	Complexity:
+	n(n-1)/2 = n^2
+*/

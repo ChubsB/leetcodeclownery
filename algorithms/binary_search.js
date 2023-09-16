@@ -18,3 +18,8 @@ const binary_search = (array, target) => {
 };
 
 console.log(binary_search(array, 123));
+
+/*
+	Complexity
+	log(n)
+*/
