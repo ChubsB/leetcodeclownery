@@ -1,10 +1,11 @@
 var containsDuplicate = function(nums) {
-    const tally = new Map();
-    for(let i = 0; i < nums.length; i++){
-        if(tally.has(nums[i])){
+    let numberList = new Map();
+    for(let i = 0; i < nums.length; i++) {
+        if(numberList.has(nums[i])) {
+            numberList.set(nums[i], numberList.get(nums[i]) + 1)
             return true
         } else {
-            tally.set(nums[i], i)
+            numberList.set(nums[i], 0)
         }
     }
     return false
