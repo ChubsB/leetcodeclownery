@@ -23,10 +23,6 @@ console.log(isAnagram("rat", "car"));
 console.log(isAnagram("anagram", "nagaram"))
 console.log(isAnagram("a", "ab"));
 
-// Brute force 
-// O(n^2) time 
-// I(1) memory 
-
 // Best
 // O(n) time
 // O(n) memory
