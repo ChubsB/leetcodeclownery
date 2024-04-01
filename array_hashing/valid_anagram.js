@@ -1,27 +1,49 @@
-var isAnagram = function (s, t) {
-	if (s.length !== t.length) return false; 
-    let tallyS = new Map();
-    for(let i = 0; i < s.length; i++) {
-        let char = s.charAt(i);
-        tallyS.set(char, (tallyS.get(char) || 0) + 1);
-    }
-    for(let i = 0; i < t.length; i++) {
-        let char = t.charAt(i);
-        if (!tallyS.has(char) || tallyS.get(char) === 0) return false;
-        tallyS.set(char, tallyS.get(char) - 1);
-    }
-    return true;
-};
 
+// Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+// An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+// Example 1:
 // Input: s = "anagram", t = "nagaram"
 // Output: true
-
+// Example 2:
 // Input: s = "rat", t = "car"
 // Output: false
 
-console.log(isAnagram("rat", "car"));
-console.log(isAnagram("anagram", "nagaram"))
-console.log(isAnagram("a", "ab"));
+var isAnagram = function (s, t) {
+    isValid = false
+    let tallyS = new Map()
+    let tallyT = new Map()
+    if(s.length == t.length){
+        for(let i = 0; i < s.length; i ++) {
+            if(tallyS.has(s.charAt(i))) {
+                tallyS.set(s.charAt(i), tallyS.get(s.charAt(i)) + 1)
+            } else {
+                tallyS.set(s.charAt(i), 0)
+            }
+
+            if(tallyT.has(t.charAt(i))) {
+                tallyT.set(t.charAt(i), tallyT.get(t.charAt(i)) + 1)
+            } else {
+                tallyT.set(t.charAt(i), 0)
+            }
+        }
+
+        for(const [key, value] of tallyS.entries()) {
+            if(tallyT.has(key) && value == tallyT.get(key)) {
+                isValid = true
+            } else {
+                isValid = false 
+                break
+            }
+        }
+    } else {
+        isValid = false 
+    }
+    return isValid
+};
+
+console.log(isAnagram("rat", "car")); // false
+console.log(isAnagram("anagram", "nagaram")) // true
+console.log(isAnagram("a", "ab")); // false
 
 // Best
 // O(n) time
