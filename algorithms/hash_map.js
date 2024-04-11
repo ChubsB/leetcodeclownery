@@ -49,5 +49,4 @@ class Hashmap {
 		}
 		return false
 	}
-
 }
