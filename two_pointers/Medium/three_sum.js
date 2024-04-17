@@ -8,7 +8,7 @@
 var threeSum = function(nums) {
     let sorted_nums = nums.sort((a, b) => a - b);
     let ans = [];
-    for (let i = 0; i < sorted_nums.length - 2; i++) { // Ensure there are at least two more elements
+    for (let i = 0; i < sorted_nums.length - 2; i++) {
         if (i === 0 || (i > 0 && sorted_nums[i] !== sorted_nums[i - 1])) {
             let start = i + 1;
             let end = sorted_nums.length - 1;
@@ -16,8 +16,8 @@ var threeSum = function(nums) {
                 let sum = sorted_nums[i] + sorted_nums[start] + sorted_nums[end];
                 if (sum === 0) {
                     ans.push([sorted_nums[i], sorted_nums[start], sorted_nums[end]]);
-                    while (start < end && sorted_nums[start] === sorted_nums[start + 1]) start++; // Skip duplicates
-                    while (start < end && sorted_nums[end] === sorted_nums[end - 1]) end--; // Skip duplicates
+                    while (start < end && sorted_nums[start] === sorted_nums[start + 1]) start++;
+                    while (start < end && sorted_nums[end] === sorted_nums[end - 1]) end--; 
                     start++;
                     end--;
                 } else if (sum < 0) {
