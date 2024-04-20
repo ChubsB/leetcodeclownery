@@ -9,3 +9,18 @@
 // Example 3:
 // Input: temperatures = [30,60,90]
 // Output: [1,1,0]
+
+var dailyTemperatures = function(temperatures) {
+    let answer = new Array(temperatures.length).fill(0);
+    let stack = [];
+
+    for (let i = 0; i < temperatures.length; i++) {
+        while (stack.length > 0 && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+            let index = stack.pop();
+            answer[index] = i - index;
+        }
+        stack.push(i);
+    }
+
+    return answer;
+};
