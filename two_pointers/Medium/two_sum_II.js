@@ -4,18 +4,18 @@
 // Your solution must use only constant extra space.
 
 var twoSum = function(numbers, target) {
-  let start = 0
-  let end = numbers.length
-  for(let i = 0; i < numbers.length; i++) {
-      if(numbers[start] + numbers[end] == target){
-          break 
-      } else if(numbers[start] + numbers[end] < target) {
-          start++
-      } else {
-          end--
-      }
-  }
-  return [start + 1, end + 1]
+    let low = 0
+    let high = numbers.length - 1
+    while(low < high) {
+        if(numbers[low] + numbers[high] == target){
+            return [low + 1,high + 1]
+        }   
+        if(numbers[low] + numbers[high] < target) {
+            low++
+        } else {
+            high--
+        }
+    }
 };
 
 console.log(twoSum([2, 7, 11, 15], 9)); // [1,2]
