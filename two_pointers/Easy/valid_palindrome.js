@@ -16,14 +16,19 @@
 
 
 var isPalindrome = function(s) {
-    const cleanString = s.toLowerCase().replace(/[^a-z0-9]/g, "");
-    let check = true
-    for(let i = 0; i < cleanString.length; i++) {
-        if(!(cleanString[i] === cleanString[cleanString.length - 1 - i])) {
-            check = false
+    let lowercaseString = s.toLowerCase();
+    let cleanedString = lowercaseString.replace(/[^a-z0-9]/g, "");
+    let start = 0
+    let end = cleanedString.length - 1
+    while(start < end) {
+        if(cleanedString.charAt(start) != cleanedString.charAt(end)) {
+            return false
+        } else {
+            start++
+            end--
         }
     }
-    return check
+    return true
 };
 
 console.log(isPalindrome("A man, a plan, a canal: Panama")) // true

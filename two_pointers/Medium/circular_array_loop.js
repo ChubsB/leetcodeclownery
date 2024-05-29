@@ -22,7 +22,7 @@ var circularArrayLoop = function (nums) {
         return true;
       }
       slow = getNext(slow);
-      fast = getNext(getNexzt(fast));
+      fast = getNext(getNext(fast));
     }
     let index = i;
     let val = nums[i];
