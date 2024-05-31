@@ -6,31 +6,32 @@
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    let sorted_nums = nums.sort((a, b) => a - b);
-    let ans = [];
-    for (let i = 0; i < sorted_nums.length - 2; i++) {
-        if (i === 0 || (i > 0 && sorted_nums[i] !== sorted_nums[i - 1])) {
-            let start = i + 1;
-            let end = sorted_nums.length - 1;
-            while (start < end) {
-                let sum = sorted_nums[i] + sorted_nums[start] + sorted_nums[end];
-                if (sum === 0) {
-                    ans.push([sorted_nums[i], sorted_nums[start], sorted_nums[end]]);
-                    while (start < end && sorted_nums[start] === sorted_nums[start + 1]) start++;
-                    while (start < end && sorted_nums[end] === sorted_nums[end - 1]) end--; 
-                    start++;
-                    end--;
-                } else if (sum < 0) {
-                    start++;
-                } else {
-                    end--;
+    nums = nums.sort((a, b) => a - b)
+    let ans = []
+    for(let i = 0; i < nums.length - 1; i++) {
+        if(nums[i] == nums[i - 1]) {
+            continue
+        }
+        let min = i + 1
+        let max = nums.length - 1
+        while(min < max) {
+            let value = nums[i] + nums[min] + nums[max]
+             if(value < 0) {
+                min++
+            } else if (value > 0) {
+                max--
+            } else {
+                ans.push([nums[i],nums[min],nums[max]])
+                min++
+                while(nums[i] == nums[min] && min < max) {
+                    min++
                 }
             }
         }
     }
-    return ans;
+    return ans
 };
 
-console.log(threeSum([-1,0,1,2,-1,-4])) //[ -4, -1, -1, 0, 1, 2 ]
-// console.log(threeSum([0,1,1]))
-// console.log(threeSum([0,0,0]))
+// console.log(threeSum([-1,0,1,2,-1,-4])) //[ -4, -1, -1, 0, 1, 2 ]
+// // console.log(threeSum([0,1,1]))
+console.log(threeSum([0,0,0,0]))
