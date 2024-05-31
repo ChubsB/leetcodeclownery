@@ -8,22 +8,22 @@
 var threeSum = function(nums) {
     nums = nums.sort((a, b) => a - b)
     let ans = []
-    for(let i = 0; i < nums.length - 1; i++) {
-        if(nums[i] == nums[i - 1]) {
+    for(let i = 0; i < nums.length - 2; i++) {
+        if(i > 0 && nums[i] == nums[i - 1]) {
             continue
         }
         let min = i + 1
         let max = nums.length - 1
         while(min < max) {
             let value = nums[i] + nums[min] + nums[max]
-             if(value < 0) {
-                min++
-            } else if (value > 0) {
+             if(value > 0) {
                 max--
+            } else if (value < 0) {
+                min++
             } else {
                 ans.push([nums[i],nums[min],nums[max]])
                 min++
-                while(nums[i] == nums[min] && min < max) {
+                while(nums[min] == nums[min - 1] && min < max) {
                     min++
                 }
             }
