@@ -8,34 +8,45 @@
 // The input represents a valid arithmetic expression in a reverse polish notation.
 // The answer and all the intermediate calculations can be represented in a 32-bit integer.
 
-function evalRPN(tokens) {
-    const stack = [];
-    tokens.forEach(token => {
-        if (['+', '-', '*', '/'].includes(token)) {
-            const num2 = stack.pop();
-            const num1 = stack.pop(); 
-            switch (token) {
-                case '+':
-                    stack.push(num1 + num2);
-                    break;
-                case '-':
-                    stack.push(num1 - num2);
-                    break;
-                case '*':
-                    stack.push(num1 * num2);
-                    break;
-                case '/':
-                    stack.push(Math.trunc(num1 / num2));
-                    break;
+var evalRPN = function(tokens) {
+    let stack = []
+    let operators = new Map([
+        ["+", 1],
+        ["-", 1],
+        ["*", 1],
+        ["/", 1]
+    ])
+    for(let i = 0; i < tokens.length; i++) {
+        if(operators.has(tokens[i])) {
+            let value = 0
+            let v2 = parseInt(stack.pop())
+            let v1 = parseInt(stack.pop())
+            if(tokens[i] === "+") {
+                value = v1 + v2
             }
-        } else {
-            stack.push(parseInt(token, 10));
+            if(tokens[i] === "-") {
+                value = v1 - v2
+            }
+            if(tokens[i] === "*") {
+                value = v1 * v2
+            }
+            if(tokens[i] === "/") {
+                value = Math.trunc(v1 / v2);
+            }   
+            stack.push(value)
+        } else {    
+            stack.push(tokens[i])
         }
-    });
-    return stack.pop();
-}
+    }
+    return stack[0]
+};
+
 
 // console.log(
 // 	evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
 //   );
+
+console.log(
+	evalRPN(["2","1","+","3","*"])
+  );
 
