@@ -6,31 +6,32 @@
 // Input: n = 1
 // Output: ["()"]
 
-var generateParenthesis = function(n) {
-    // x open && x close
-	// close < open
-	let stack = []
-	res = []
+function generateParenthesis(n) {
+    const result = [];
+    const stack = [];
 
-	var backTrack = function(open, closed){
-		if(open === n && closed === n) {
-			res.push(stack.join(''));
-			return
-		}
-		if(open < n) {
-			stack.push('(')
-			backTrack(open + 1, closed)
-			stack.pop()
-		}
-		if(closed < open) {
-			stack.push(')')
-			backTrack(open, closed + 1)
-			stack.pop()
-		} 
-	}
-	backTrack(0, 0)
-	return res
-};
+    function backtrack(openCount, closeCount) {
+        if (openCount === n && closeCount === n) {
+            result.push(stack.join(''));
+            return;
+        }
+
+        if (openCount < n) {
+            stack.push('(');
+            backtrack(openCount + 1, closeCount);
+            stack.pop();
+        }
+
+        if (closeCount < openCount) {
+            stack.push(')');
+            backtrack(openCount, closeCount + 1);
+            stack.pop();
+        }
+    }
+
+    backtrack(0, 0);
+    return result;
+}
 
 // console.log(generateParenthesis(1)) //["()"]
 console.log(generateParenthesis(2)) //["()()", "(())"]
