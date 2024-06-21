@@ -17,13 +17,12 @@ function generateParenthesis(n) {
         }
 
         if (openCount < n) {
-            stack.push('(');
             backtrack(openCount + 1, closeCount);
             stack.pop();
         }
 
         if (closeCount < openCount) {
-            stack.push(')');
+            stack.push(')'); 
             backtrack(openCount, closeCount + 1);
             stack.pop();
         }

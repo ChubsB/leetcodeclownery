@@ -11,15 +11,24 @@
 // Output: [1,1,0]
 
 var dailyTemperatures = function(temperatures) {
-    let answer = new Array(temperatures.length).fill(0)
+    let results = new Array(temperatures.length).fill(0);
     let stack = []
-
-    for(let i; i < temperatures.length; i++) {
-        while(stack.length > 0 && temperatures[i] > stack[stack.length - 1]) {
-            let index = stack.pop()
-            answer[index] = i - index
+    for(let i = 0; i < temperatures.length; i++) {
+        let pair = [temperatures[i], i] 
+        if(stack.length > 0) {
+             while(stack.length > 0) {
+                let check = stack[stack.length - 1] 
+                if(check[0] < pair[0]) {
+                    results[check[1]] = pair[1] - check[1]
+                    stack.pop()
+                } else {
+                    break
+                }
+             }
+             stack.push(pair) 
+        } else {
+            stack.push(pair)
         }
-        stack.push(i)
     }
-    return answer
+    return results
 };
